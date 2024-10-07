@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pirated Shows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        video {
+            width: 80%;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .series-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .series-item {
+            margin: 20px;
+            cursor: pointer;
+        }
+        .series-item img {
+            width: 200px;
+            height: 300px;
+            border-radius: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .series, .season {
+            display: none; /* Skjuler serier og sesonger til de blir valgt */
+        }
+        /* Stil for X-knappen */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #FF0000;
+            display: none; /* Skjules til et show er valgt */
+        }
+    </style>
+</head>
+<body>
+    <h1>Pirated Shows</h1>
+
+    <!-- X-knapp for å gå tilbake til serielisten -->
+    <div id="closeButton" class="close-btn" onclick="goBack()">X</div>
+
+    <!-- Liste over serier med bilder -->
+    <div class="series-container" id="seriesList">
+        <div class="series-item" onclick="showSeries('youngSheldon')">
+            <img src="path-to-young-sheldon-image.jpg" alt="Young Sheldon">
+            <h3>Young Sheldon</h3>
+        </div>
+        <div class="series-item" onclick="showSeries('anotherSeries')">
+            <img src="path-to-another-series-image.jpg" alt="Another Series">
+            <h3>Another Series</h3>
+        </div>
+        <!-- Legg til flere serier her -->
+    </div>
+
+    <!-- Young Sheldon Sesonger -->
+    <div id="youngSheldon" class="series">
+        <h2>Young Sheldon</h2>
+
+        <!-- Videospiller -->
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="path-to-default-video.mp4" type="video/mp4">
+            Din nettleser støtter ikke videospilleren.
+        </video>
+
+        <!-- Sesongvalg for Young Sheldon -->
+        <h3>Velg Sesong</h3>
+        <ul>
+            <li><a href="#" onclick="showSeason('youngSheldonSeason1')">Sesong 1</a></li>
+            <li><a href="#" onclick="showSeason('youngSheldonSeason2')">Sesong 2</a></li>
+            <li><a href="#" onclick="showSeason('youngSheldonSeason3')">Sesong 3</a></li>
+        </ul>
+
+        <!-- Episoder for Sesong 1 -->
+        <div id="youngSheldonSeason1" class="season">
+            <h3>Episoder i Sesong 1</h3>
+            <ul>
+                <li><a href="#" onclick="changeVideo('path-to-episode1-season1.mp4')">Episode 1</a></li>
+                <li><a href="#" onclick="changeVideo('path-to-episode2-season1.mp4')">Episode 2</a></li>
+                <li><a href="#" onclick="changeVideo('path-to-episode3-season1.mp4')">Episode 3</a></li>
+            </ul>
+        </div>
+
+        <!-- Episoder for Sesong 2 -->
+        <div id="youngSheldonSeason2" class="season">
+            <h3>Episoder i Sesong 2</h3>
+            <ul>
+                <li><a href="#" onclick="changeVideo('path-to-episode1-season2.mp4')">Episode 1</a></li>
+                <li><a href="#" onclick="changeVideo('path-to-episode2-season2.mp4')">Episode 2</a></li>
+                <li><a href="#" onclick="changeVideo('path-to-episode3-season2.mp4')">Episode 3</a></li>
+            </ul>
+        </div>
+
+        <!-- Episoder for Sesong 3 -->
+        <div id="youngSheldonSeason3" class="season">
+            <h3>Episoder i Sesong 3</h3>
+            <ul>
+                <li><a href="#" onclick="changeVideo('path-to-episode1-season3.mp4')">Episode 1</a></li>
+                <li><a href="#" onclick="changeVideo('path-to-episode2-season3.mp4')">Episode 2</a></li>
+                <li><a href="#" onclick="changeVideo('path-to-episode3-season3.mp4')">Episode 3</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Another Series Sesonger -->
+    <div id="anotherSeries" class="series">
+        <h2>Another Series</h2>
+        <!-- Du kan legge til flere sesonger og episoder her på samme måte som for Young Sheldon -->
+    </div>
+
+    <script>
+        // Funksjon for å vise den valgte serien og skjule serieoversikten
+        function showSeries(seriesId) {
+            // Skjul serienavigasjonen
+            document.getElementById('seriesList').style.display = 'none';
+            
+            // Vis X-knappen når en serie er valgt
+            document.getElementById('closeButton').style.display = 'block';
+
+            // Skjul alle serier
+            var series = document.getElementsByClassName('series');
+            for (var i = 0; i < series.length; i++) {
+                series[i].style.display = 'none';
+            }
+            document.getElementById(seriesId).style.display = 'block'; // Vis valgt serie
+        }
+
+        // Funksjon for å gå tilbake til serieoversikten
+        function goBack() {
+            // Vis serienavigasjonen
+            document.getElementById('seriesList').style.display = 'flex';
+
+            // Skjul X-knappen
+            document.getElementById('closeButton').style.display = 'none';
+
+            // Skjul alle serier
+            var series = document.getElementsByClassName('series');
+            for (var i = 0; i < series.length; i++) {
+                series[i].style.display = 'none';
+            }
+        }
+
+        // Funksjon for å vise den valgte sesongen og skjule de andre
+        function showSeason(seasonId) {
+            var seasons = document.getElementsByClassName('season');
+            for (var i = 0; i < seasons.length; i++) {
+                seasons[i].style.display = 'none'; // Skjul alle sesonger
+            }
+            document.getElementById(seasonId).style.display = 'block'; // Vis valgt sesong
+        }
+
+        // Funksjon for å endre videoen som vises i spilleren
+        function changeVideo(src) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoSource = document.getElementById('videoSource');
+            videoSource.src = src;
+            videoPlayer.load();  // Laster den nye videoen
+            videoPlayer.play();  // Starter avspilling automatisk
+        }
+    </script>
+</body>
+</html>
