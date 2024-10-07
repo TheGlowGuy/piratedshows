@@ -81,11 +81,14 @@
     <div id="youngSheldon" class="series">
         <h2>Young Sheldon</h2>
 
-        <!-- Videospiller med kontroller -->
-        <video id="videoPlayer" controls oncontextmenu="return false;">
+        <!-- Videospiller uten kontroller -->
+        <video id="videoPlayer" oncontextmenu="return false;">
             <source id="videoSource" src="series/young-sheldon/season-7/episode-1.mp4" type="video/mp4">
             Din nettleser støtter ikke videospilleren.
         </video>
+        <br>
+        <button onclick="playVideo()">Play</button>
+        <button onclick="pauseVideo()">Pause</button>
 
         <!-- Sesong 7 -->
         <h3>Velg Sesong 7</h3>
@@ -145,6 +148,17 @@
             videoSource.src = src;
             videoPlayer.load();  // Laster den nye videoen
             videoPlayer.play();  // Starter avspilling automatisk
+        }
+
+        // Funksjoner for å spille av og pause video
+        function playVideo() {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.play();
+        }
+
+        function pauseVideo() {
+            var videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.pause();
         }
     </script>
 </body>
